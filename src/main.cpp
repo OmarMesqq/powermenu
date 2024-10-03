@@ -24,6 +24,7 @@ QPushButton *buttonB;
 void startCountdown(const QString &action) {
     actionType = action;
     label->setText(QString("%1 in: %2 seconds").arg(actionType).arg(countdown));
+    label->show();
     timer->start(1000);
 }
 
@@ -42,11 +43,12 @@ void updateCountdown() {
     }
 }
 
-//this isnt working - pressing any key d
+
 void cancelAction() {
     timer->stop();
     countdown = 10;
     label->setText("Action canceled.");
+    label->hide();
     buttonA->setChecked(false);
     buttonB->setChecked(false);
 }
@@ -71,8 +73,8 @@ int main(int argc, char **argv) {
 
     QVBoxLayout *layout = new QVBoxLayout(&mainWindow);
     
-    //TODO: hide this if no timer
-    label = new QLabel("Press a button to start action...");
+    label = new QLabel(nullptr);
+    label->hide();
     layout->addWidget(label);
 
     buttonA = new QPushButton(SHUTDOWN_STRING);
