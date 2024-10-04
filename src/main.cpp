@@ -1,9 +1,7 @@
 #include <QApplication>
 #include "mainWindow.h"
+#include "constants.h"
 
-#define SHUTDOWN_STRING "Shutdown"
-#define RESTART_STRING "Restart"
-#define LOGOUT_STRING "Log out"
 
 int main(int argc, char **argv) {
     QApplication app(argc, argv);

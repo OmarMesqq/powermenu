@@ -1,12 +1,10 @@
 #include "mainWindow.h"
+#include "constants.h"
 #include <QVBoxLayout>
 #include <QProcess>
 #include <QMessageBox>
 #include <QKeyEvent>
 
-#define SHUTDOWN_STRING "Shutdown"
-#define RESTART_STRING "Restart"
-#define LOGOUT_STRING "Log out"
 
 void shutdown();
 void restart();
