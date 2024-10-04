@@ -12,7 +12,7 @@ void shutdown();
 void restart();
 void logout();
 
-MainWindow::MainWindow(QWidget *parent) : QWidget(parent), countdown(2) {
+MainWindow::MainWindow(QWidget *parent) : QWidget(parent), countdown(5) {
     timer = new QTimer(this);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -80,8 +80,7 @@ void MainWindow::updateCountdown() {
 
 void MainWindow::cancelAction() {
     timer->stop();
-    countdown = 2;
-    label->setText("Action canceled.");
+    countdown = 5;
     label->hide();
     shutdownButton->setChecked(false);
     restartButton->setChecked(false);

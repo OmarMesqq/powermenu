@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
     } else if (args.contains("-r")) {
         mainWindow.restartButton->setChecked(true);
         mainWindow.startCountdown(RESTART_STRING);
-    } else if (args.contains("-e")) {
+    } else if (args.contains("-l")) {
         mainWindow.logoutButton->setChecked(true);
         mainWindow.startCountdown(LOGOUT_STRING);
     }
