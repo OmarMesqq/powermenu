@@ -86,22 +86,27 @@ void MainWindow::cancelAction() {
 }
 
 void shutdown() {
-    int ret = QProcess::execute("echo", QStringList() << SHUTDOWN_STRING);
+    int ret = QProcess::execute("sudo", QStringList() << "systemctl" << "poweroff");
     if (ret != 0) {
         QMessageBox::warning(nullptr, "Error", "Failed to shutdown the system.");
     }
 }
 
 void restart() {
-    int ret = QProcess::execute("echo", QStringList() << RESTART_STRING);
+    int ret = QProcess::execute("sudo", QStringList() << "systemctl" << "reboot");
     if (ret != 0) {
         QMessageBox::warning(nullptr, "Error", "Failed to restart the system.");
     }
 }
 
 void logout() {
-    int ret = QProcess::execute("echo", QStringList() << LOGOUT_STRING);
-    if (ret != 0) {
+    int syncthingKillRet = QProcess::execute("killall", QStringList() << "syncthing");
+    if (syncthingKillRet != 0) {
+        QMessageBox::warning(nullptr, "Error", "Failed to kill syncthing process.");
+    }
+
+    int logoutRet = QProcess::execute("swaymsg", QStringList() << "exit");
+    if (logoutRet != 0) {
         QMessageBox::warning(nullptr, "Error", "Failed to logout.");
     }
 }
