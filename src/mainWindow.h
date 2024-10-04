@@ -14,6 +14,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     QPushButton *shutdownButton;
     QPushButton *restartButton;
+    QPushButton *logoutButton;
     void startCountdown(const QString &action);
 
 protected:

@@ -6,9 +6,11 @@
 
 #define SHUTDOWN_STRING "Shutdown"
 #define RESTART_STRING "Restart"
+#define LOGOUT_STRING "Log out"
 
 void shutdown();
 void restart();
+void logout();
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent), countdown(2) {
     timer = new QTimer(this);
@@ -21,9 +23,11 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), countdown(2) {
 
     shutdownButton = new QPushButton(SHUTDOWN_STRING);
     restartButton = new QPushButton(RESTART_STRING);
+    logoutButton = new QPushButton(LOGOUT_STRING);
 
     layout->addWidget(shutdownButton);
     layout->addWidget(restartButton);
+    layout->addWidget(logoutButton);
 
     setLayout(layout);
     resize(400, 100);
@@ -34,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), countdown(2) {
     // Connect button signals
     connect(shutdownButton, &QPushButton::clicked, this, [&]() { startCountdown(SHUTDOWN_STRING); });
     connect(restartButton, &QPushButton::clicked, this, [&]() { startCountdown(RESTART_STRING); });
+    connect(logoutButton, &QPushButton::clicked, this, [&]() { startCountdown(LOGOUT_STRING); });
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
@@ -42,6 +47,8 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
             shutdown();
         } else if (restartButton->isChecked()) {
             restart();
+        } else if (logoutButton->isChecked()) {
+            logout();
         }
     } else {
         cancelAction();
@@ -65,6 +72,8 @@ void MainWindow::updateCountdown() {
             shutdown();
         } else if (actionType == RESTART_STRING) {
             restart();
+        } else if (actionType == LOGOUT_STRING) {
+            logout();
         }
     }
 }
@@ -76,6 +85,7 @@ void MainWindow::cancelAction() {
     label->hide();
     shutdownButton->setChecked(false);
     restartButton->setChecked(false);
+    logoutButton->setChecked(false);
 }
 
 void shutdown() {
@@ -89,5 +99,12 @@ void restart() {
     int ret = QProcess::execute("echo", QStringList() << RESTART_STRING);
     if (ret != 0) {
         QMessageBox::warning(nullptr, "Error", "Failed to restart the system.");
+    }
+}
+
+void logout() {
+    int ret = QProcess::execute("echo", QStringList() << LOGOUT_STRING);
+    if (ret != 0) {
+        QMessageBox::warning(nullptr, "Error", "Failed to logout.");
     }
 }

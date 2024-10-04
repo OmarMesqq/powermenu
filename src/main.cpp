@@ -3,6 +3,7 @@
 
 #define SHUTDOWN_STRING "Shutdown"
 #define RESTART_STRING "Restart"
+#define LOGOUT_STRING "Log out"
 
 int main(int argc, char **argv) {
     QApplication app(argc, argv);
@@ -18,6 +19,9 @@ int main(int argc, char **argv) {
     } else if (args.contains("-r")) {
         mainWindow.restartButton->setChecked(true);
         mainWindow.startCountdown(RESTART_STRING);
+    } else if (args.contains("-e")) {
+        mainWindow.logoutButton->setChecked(true);
+        mainWindow.startCountdown(LOGOUT_STRING);
     }
 
     mainWindow.show();
