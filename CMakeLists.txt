@@ -3,7 +3,11 @@ cmake_minimum_required(VERSION 3.5)
 project(powermenu)
 
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_BUILD_TYPE Debug)
+
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
 find_package(Qt5Widgets REQUIRED)
 
 # Source files
