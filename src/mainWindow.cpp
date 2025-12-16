@@ -101,15 +101,6 @@ void restart() {
 }
 
 void logout() {
-    int syncthingKillRet = QProcess::execute("curl", QStringList() 
-        << "-X" << "POST" 
-        << "-H" << QString("X-API-Key: %1").arg(SYNCTHING_API_KEY)
-        << "http://localhost:8384/rest/system/shutdown");
-    
-    if (syncthingKillRet != 0) {
-        QMessageBox::warning(nullptr, "Error", "Failed to kill syncthing process.");
-    }
-
     int logoutRet = QProcess::execute("swaymsg", QStringList() << "exit");
     if (logoutRet != 0) {
         QMessageBox::warning(nullptr, "Error", "Failed to logout.");
