@@ -1,6 +1,5 @@
 #include "mainWindow.h"
 #include "constants.h"
-#include "syncthingApiKey.h"
 #include <QVBoxLayout>
 #include <QProcess>
 #include <QMessageBox>
