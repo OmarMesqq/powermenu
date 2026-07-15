@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 project(powermenu)
 
-# C++11
+# C++ 17
 set(CMAKE_CXX_STANDARD 17)
 
 # Default to release variant
@@ -22,6 +22,7 @@ set(SOURCES
 set(HEADERS
     src/mainWindow.h
 )
+
 qt6_wrap_cpp(MOC_SOURCES ${HEADERS})
 add_executable(powermenu ${SOURCES} ${HEADERS} ${MOC_SOURCES})
 

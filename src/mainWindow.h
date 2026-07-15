@@ -11,14 +11,14 @@ class MainWindow : public QWidget {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    QPushButton *shutdownButton;
-    QPushButton *restartButton;
-    QPushButton *logoutButton;
-    void startCountdown(const QString &action);
+    MainWindow(QWidget* parent = nullptr);
+    QPushButton* shutdownButton;
+    QPushButton* restartButton;
+    QPushButton* logoutButton;
+    void startCountdown(const QString& action);
 
 protected:
-    void keyPressEvent(QKeyEvent *event) override;
+    void keyPressEvent(QKeyEvent* event) override;
 
 private:
     void updateCountdown();
@@ -26,9 +26,8 @@ private:
 
     QString actionType;
     int countdown;
-    QTimer *timer;
-    QLabel *label;
-    
+    QTimer* timer;
+    QLabel* label;
 };
 
 #endif // MAINWINDOW_H

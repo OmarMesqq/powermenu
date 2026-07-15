@@ -6,11 +6,11 @@
 #include <QKeyEvent>
 
 
-void shutdown();
-void restart();
-void logout();
+static void shutdown();
+static void restart();
+static void logout();
 
-MainWindow::MainWindow(QWidget *parent) : QWidget(parent), countdown(3) {
+MainWindow::MainWindow(QWidget* parent) : QWidget(parent), countdown(3) {
     timer = new QTimer(this);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -85,23 +85,23 @@ void MainWindow::cancelAction() {
     logoutButton->setChecked(false);
 }
 
-void shutdown() {
+static void shutdown() {
     int ret = QProcess::execute("sudo", QStringList() << "systemctl" << "poweroff");
     if (ret != 0) {
         QMessageBox::warning(nullptr, "Error", "Failed to shutdown the system.");
     }
 }
 
-void restart() {
+static void restart() {
     int ret = QProcess::execute("sudo", QStringList() << "systemctl" << "reboot");
     if (ret != 0) {
         QMessageBox::warning(nullptr, "Error", "Failed to restart the system.");
     }
 }
 
-void logout() {
-    int logoutRet = QProcess::execute("swaymsg", QStringList() << "exit");
-    if (logoutRet != 0) {
+static void logout() {
+    int ret = QProcess::execute("swaymsg", QStringList() << "exit");
+    if (ret != 0) {
         QMessageBox::warning(nullptr, "Error", "Failed to logout.");
     }
 }

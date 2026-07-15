@@ -3,9 +3,10 @@
 #include "constants.h"
 
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
     QApplication app(argc, argv);
 
+    // dark theme
     app.setStyleSheet(R"(
         QWidget {
             background-color: #1e1e1e;
