@@ -35,3 +35,20 @@ target_include_directories(powermenu PRIVATE
 target_link_libraries(powermenu Qt6::Widgets)
 
 set(CMAKE_AUTOMOC ON)
+
+target_compile_options(powermenu PRIVATE
+    -Wall -Wextra -Wpedantic
+
+    # Optimise for size
+    $<$<CONFIG:Release>:-Os>
+
+    $<$<CONFIG:Release>:-flto>
+)
+
+add_custom_command(
+    TARGET powermenu
+    POST_BUILD
+    COMMAND ${CMAKE_STRIP} $<TARGET_FILE:powermenu>
+    # Only execute in Release builds
+    $<$<CONFIG:Release>:>
+)
