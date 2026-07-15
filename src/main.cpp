@@ -6,6 +6,23 @@
 int main(int argc, char **argv) {
     QApplication app(argc, argv);
 
+    app.setStyleSheet(R"(
+        QWidget {
+            background-color: #1e1e1e;
+            color: #e6e6e6;
+        }
+        QPushButton {
+            background-color: #2b2b2b;
+            color: #e6e6e6;
+        }
+        QPushButton:hover {
+            background-color: #343434;
+        }
+        QLabel {
+            color: #e6e6e6;
+        }
+    )");
+
     MainWindow mainWindow;
     mainWindow.setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
 
